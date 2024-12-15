@@ -23,6 +23,7 @@ func main() {
 
 	r.POST("/signup", controller.SignUpEmployees)
 	r.POST("/signin", controller.SignInEmployees)
+	r.POST("/warehouses-create", controllerwarehouse.CreateWarehouse)
 
 	router := r.Group("/")
 	{

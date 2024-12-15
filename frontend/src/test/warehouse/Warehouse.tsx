@@ -15,6 +15,7 @@ function PageWarehouse() {
   const [messageApi, contextHolder] = message.useMessage();
   const [warehouses, setWarehouses] = useState<WarehousesInterface[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
+  const myId = localStorage.getItem("id");
 
   const deleteWarehouseById = async (id: string) => {
     let res = await DeleteWarehousesById(id);
@@ -174,13 +175,19 @@ function PageWarehouse() {
       key: 'action',
       width: 140,
       render: (record) => (
+        <>
+          {myId == record?.ID ? (
+            <></>
+          ) : (
         <Space size="middle">
-          <Button onClick={() => deleteWarehouseById(record.ID)}>
+          <Button onClick={() => navigate(`/warehouse/edit/${record.ID}`)}>
             <EditTwoTone twoToneColor="#10515F" /></Button>
-          <Button onClick={() => (record.ID)}>
+          <Button onClick={() => deleteWarehouseById(record.ID)}>
             <DeleteTwoTone twoToneColor="#FF7236" />
           </Button>
         </Space>
+          )}
+        </>
       ),
     },
   ];

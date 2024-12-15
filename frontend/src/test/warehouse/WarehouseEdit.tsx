@@ -20,20 +20,21 @@ import {
   SaveOutlined
 } from '@ant-design/icons';
 import { WarehousesInterface, WarehouseStatusesInterface, WarehouseTypesInterface, ProvinceInterface } from "../../interfaces/InterfaceFull";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { 
-  GetWarehouseTypes, GetWarehouseStatuses, GetProvince, 
-  CreateWarehouse
+  GetWarehouseTypes, GetWarehouseStatuses, GetProvince, UpdateWarehousesById, GetWarehousesById
 } from '../../services/https';
 
 const { Title } = Typography;
 
-function PageWarehouseCreate() {
+function PageWarehouseEdit() {
   const navigate = useNavigate();
   const [messageApi, contextHolder] = message.useMessage();
   const [warehouseStatus, setWarehouseStatus] = useState<WarehouseStatusesInterface[]>([]);
   const [warehouseType, setWarehouseType] = useState<WarehouseTypesInterface[]>([]);
   const [province, setGetProvince] = useState<ProvinceInterface[]>([]);
+  const [form] = Form.useForm();
+  const { id } = useParams<{ id: any }>();
   // Fetch Initial Data
   const fetchInitialData = async () => {
     try {
@@ -55,15 +56,43 @@ function PageWarehouseCreate() {
     }
   };
 
+  const getWarehousesById = async (id: string) => {
+    let res = await GetWarehousesById(id);
+    if (res.status == 200) {
+      form.setFieldsValue({
+        //WarehouseName: res.data.WarehouseName,
+        //WarehouseTypeID: res.data.WarehouseType?.ID,
+        //WarehouseStatusID: res.data.WarehouseStatus?.ID,
+        capacity: res.data.capacity,
+        //address: res.data.address,
+        //zipcode: res.data.zipcode,
+        //ProvinceID: res.data.Province?.ID,
+
+      });
+      console.log("Warehouse Data:", res.data);
+
+    } else {
+      messageApi.open({
+        type: "error",
+        content: "ไม่พบข้อมูลผู้ใช้",
+      });
+      setTimeout(() => {
+        navigate("/warehouse");
+      }, 2000);
+    }
+  };
+
   const onFinish = async (values: WarehousesInterface) => {
-    let res = await CreateWarehouse(values);
-   
-    if (res.status == 201) {
+    let payload = {
+      ...values,
+    };
+    const res = await UpdateWarehousesById(id, payload);
+    if (res.status == 200) {
       messageApi.open({
         type: "success",
         content: res.data.message,
       });
-      setTimeout(function () {
+      setTimeout(() => {
         navigate("/warehouse");
       }, 2000);
     } else {
@@ -74,12 +103,12 @@ function PageWarehouseCreate() {
     }
   };
 
-  // Initial Data Fetching
   useEffect(() => {
     fetchInitialData();
-    return () => {};
+    getWarehousesById(id);//=========
   }, []);
 
+  
   return (
     <div>
     {contextHolder}
@@ -125,6 +154,7 @@ function PageWarehouseCreate() {
 
     <Form 
       name="basic"
+      form={form} 
       layout="vertical" 
       onFinish={onFinish}
       requiredMark="optional"
@@ -210,6 +240,7 @@ function PageWarehouseCreate() {
               {warehouseStatus.map((item) => (
                 <Select.Option 
                   value={item?.ID} 
+                  //key={item?.ID}
                 >
                   {item?.WarehouseStatus}
                 </Select.Option>
@@ -372,4 +403,4 @@ function PageWarehouseCreate() {
   );
 }
 
-export default PageWarehouseCreate;
+export default PageWarehouseEdit;

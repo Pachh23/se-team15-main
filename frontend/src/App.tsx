@@ -13,6 +13,7 @@ import { NewOrderForm } from "./test/NewOrder";
 import Product from "./test/Product"
 import Warehouse from "./test/warehouse/Warehouse"
 import PageWarehouseCreate from "./test/warehouse/WarehouseCreate";
+import PageWarehouseEdit from "./test/warehouse/WarehouseEdit";
 const App: React.FC = () => {
   return (
     <Router>
@@ -28,6 +29,7 @@ const App: React.FC = () => {
           <Route path="/product" element={<Product />} />
           <Route path="/warehouse" element={<Warehouse />} />
           <Route path="/warehouse/create" element={<PageWarehouseCreate />} />
+          <Route path="/warehouse/edit/:id" element={<PageWarehouseEdit />} />
 
         </Route>
         <Route path="/page-c" element={<PageC />} />
