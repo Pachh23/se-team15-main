@@ -4,5 +4,5 @@ import "gorm.io/gorm"
 
 type Provinces struct {
 	gorm.Model
-	Province string
+	Province string `json:"province"`
 }

@@ -25,22 +25,16 @@ func GetWarehouse(c *gin.Context) {
 	ID := c.Param("id")
 	var warehouse entity.Warehouses
 	db := config.DB()
-	results := db.Preload("Province").Preload("WarehouseType").First(&warehouse, ID)
-
+	results := db.Preload("Province").Preload("WarehouseType").Preload("WarehouseStatus").First(&warehouse, ID)
 	if results.Error != nil {
-		// ถ้ามีข้อผิดพลาดในการดึงข้อมูลจากฐานข้อมูล
 		c.JSON(http.StatusNotFound, gin.H{"error": results.Error.Error()})
 		return
 	}
-
-	// เช็คถ้าไม่พบข้อมูล
 	if warehouse.ID == 0 {
 		c.JSON(http.StatusNoContent, gin.H{})
 		return
 	}
-
-	// ส่งข้อมูล Warehouse พร้อมสถานะ
-	c.JSON(http.StatusOK, gin.H{})
+	c.JSON(http.StatusOK, warehouse)
 }
 
 func UpdateWarehouse(c *gin.Context) {

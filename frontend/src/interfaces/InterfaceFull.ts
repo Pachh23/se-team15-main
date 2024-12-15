@@ -35,12 +35,12 @@ export interface PositionsInterface {
     ID?: number;
     Position?: string;
   }
-
+/*
 export interface WarehousesInterface {
     ID?: number;
     Warehouse_name?: string;
   }
-
+*/
 export interface LocationInterface {
 	ID?: number;
     Shelf?: number;
@@ -56,10 +56,11 @@ export interface LocationInterface {
 
 export interface ProvinceInterface {
   ID?: number;
-  Province?: string;
+  province?: string;
 }
 
 export interface WarehousesInterface {
+  [x: string]: any;
   ID?: number;
   WarehouseName?: string;
   WarehouseTypeID?: number;
@@ -73,10 +74,10 @@ export interface WarehousesInterface {
 
 export interface WarehouseStatusesInterface {
   ID?: number;
-  WarehouseStatus?: string;
+  warehouse_status?: string;
 }
 
 export interface WarehouseTypesInterface {
   ID?: number;
-  WarehouseType?: string;
+  warehouse_type?: string;
 }

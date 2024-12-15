@@ -58,11 +58,11 @@ function PageWarehouse() {
   
     return warehouses.filter((warehouse) => {
       const searchableFields = [
-        warehouse.WarehouseName?.toLowerCase() || '',
-        warehouse.Address?.toLowerCase() || '',
+        warehouse.warehouse_name?.toLowerCase() || '',
+        warehouse.address?.toLowerCase() || '',
         warehouse.ID?.toString() || '',
-        warehouse.Zipcode?.toString() || '',
-        warehouse.Capacity?.toString() || ''
+        warehouse.zipcode?.toString() || '',
+        warehouse.capacity?.toString() || ''
       ];
       
       return searchableFields.some(field => field.includes(lowercaseQuery));
@@ -88,7 +88,7 @@ function PageWarehouse() {
     },      
     {
       title: 'Warehouse Name',
-      dataIndex: 'WarehouseName',  // แก้ไขจาก WarehouseName
+      dataIndex: 'warehouse_name',  // แก้ไขจาก WarehouseName
       key: 'WarehouseName',
       // ...
       sorter: (a, b) => {
@@ -100,9 +100,9 @@ function PageWarehouse() {
     },  
     {
       title: 'Type',
-      key: 'WarehouseType',
+      key: 'warehouse_type',
       render: (record) => {
-        const type = record?.WarehouseType?.WarehouseType;
+        const type = record?.warehouse_type?.warehouse_type;
         let color = 'black';
         if (type === 'Cold Storage') {
           color = 'blue';
@@ -120,6 +120,15 @@ function PageWarehouse() {
           </Tag>
         );
       },
+       // เพิ่มฟิลเตอร์
+       filters: [
+        { text: 'Cold Storage', value: 'Cold Storage' },
+        { text: 'Dry Storage', value: 'Dry Storage' },
+        { text: 'Hazardous Storage', value: 'Hazardous Storage' },
+        { text: 'Bulk Storage', value: 'Bulk Storage' },
+      ],
+      // กรองข้อมูลตามสถานะที่เลือก
+      onFilter: (value, record) => record?.warehouse_type?.warehouse_type.indexOf(value) === 0,
     },    
     {
       title: 'Capacity (m³)',
@@ -134,10 +143,10 @@ function PageWarehouse() {
     },
     {
       title: 'Status',
-      key: 'WarehouseStatus',
+      key: 'warehouse_status',
       width: 150,
       render: (record) => {
-        const status = record?.WarehouseStatus?.WarehouseStatus;
+        const status = record?.warehouse_status?.warehouse_status;
         let color = 'black';
         if (status === 'Available') {
           color = '#52c41a';
@@ -160,13 +169,23 @@ function PageWarehouse() {
           </span>
         );
       },
-    },    
+       // เพิ่มฟิลเตอร์
+       filters: [
+        { text: 'Available', value: 'Available' },
+        { text: 'Full', value: 'Full' },
+        { text: 'Nearly Full', value: 'Nearly Full' },
+        { text: 'Empty', value: 'Empty' },
+      ],
+      // กรองข้อมูลตามสถานะที่เลือก
+      onFilter: (value, record) => record?.warehouse_status?.warehouse_status.indexOf(value) === 0,
+    },
+    // เพิ่มคอลัมน์อื่น ๆ ที่ต้องการ
     {
       title: 'Address',
       key: 'address',
       render: (record) => (
         <div style={{ maxWidth: '200px', overflow: 'hidden', textOverflow: 'ellipsis' }}>
-          {record.address}, {record?.Province?.Province}, {record.zipcode}
+          {record.address}, {record?.province?.province}, {record.zipcode}
         </div>
       ),
     },

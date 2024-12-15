@@ -29,12 +29,12 @@ const { Title } = Typography;
 
 function PageWarehouseEdit() {
   const navigate = useNavigate();
+  const { id } = useParams<{ id: any }>();
   const [messageApi, contextHolder] = message.useMessage();
   const [warehouseStatus, setWarehouseStatus] = useState<WarehouseStatusesInterface[]>([]);
   const [warehouseType, setWarehouseType] = useState<WarehouseTypesInterface[]>([]);
   const [province, setGetProvince] = useState<ProvinceInterface[]>([]);
   const [form] = Form.useForm();
-  const { id } = useParams<{ id: any }>();
   // Fetch Initial Data
   const fetchInitialData = async () => {
     try {
@@ -55,19 +55,17 @@ function PageWarehouseEdit() {
       setTimeout(() => navigate("/warehouse"), 2000);
     }
   };
-
-  const getWarehousesById = async (id: string) => {
+  const getWarehouseById = async (id: string) => {
     let res = await GetWarehousesById(id);
     if (res.status == 200) {
       form.setFieldsValue({
-        //WarehouseName: res.data.WarehouseName,
-        //WarehouseTypeID: res.data.WarehouseType?.ID,
-        //WarehouseStatusID: res.data.WarehouseStatus?.ID,
+        warehouse_name: res.data.warehouse_name,
+        warehouse_type_id: res.data.warehouse_type?.ID,
+        warehouse_status_id: res.data.warehouse_status?.ID,
         capacity: res.data.capacity,
-        //address: res.data.address,
-        //zipcode: res.data.zipcode,
-        //ProvinceID: res.data.Province?.ID,
-
+        address: res.data.address,
+        zipcode: res.data.zipcode,
+        province_id: res.data.province?.ID,
       });
       console.log("Warehouse Data:", res.data);
 
@@ -81,6 +79,7 @@ function PageWarehouseEdit() {
       }, 2000);
     }
   };
+  
 
   const onFinish = async (values: WarehousesInterface) => {
     let payload = {
@@ -105,7 +104,7 @@ function PageWarehouseEdit() {
 
   useEffect(() => {
     fetchInitialData();
-    getWarehousesById(id);//=========
+    getWarehouseById(id);//=========
   }, []);
 
   
@@ -151,24 +150,23 @@ function PageWarehouseEdit() {
         Fill in the details for your new warehouse location
       </Typography.Text>
     </div>
-
     <Form 
       name="basic"
-      form={form} 
-      layout="vertical" 
+      form={form}
+      layout="vertical"
       onFinish={onFinish}
-      requiredMark="optional"
       autoComplete="off"
+      requiredMark="optional"
     >
       {/* Warehouse Name */}
       <Form.Item
-        name="WarehouseName"
         label={
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <InfoCircleOutlined style={{ color: '#1890ff' }} />
             Warehouse Name
           </div>
         }
+        name="warehouse_name"
         rules={[{ 
           required: true, 
           message: 'Please input the warehouse name!' 
@@ -187,13 +185,13 @@ function PageWarehouseEdit() {
       <Row gutter={16}>
         <Col span={12}>
           <Form.Item
-            name="WarehouseTypeID"
             label={
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <TagsOutlined style={{ color: '#1890ff' }} />
                 Warehouse Type
               </div>
             }
+            name="warehouse_type_id"
             rules={[{ 
               required: true, 
               message: 'Please select warehouse type!' 
@@ -210,7 +208,7 @@ function PageWarehouseEdit() {
                 <Select.Option 
                   value={item?.ID} 
                 >
-                  {item?.WarehouseType}
+                  {item?.warehouse_type}
                 </Select.Option>
               ))}
             </Select>
@@ -218,13 +216,13 @@ function PageWarehouseEdit() {
         </Col>
         <Col span={12}>
           <Form.Item
-            name="WarehouseStatusID"
             label={
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <TagsOutlined style={{ color: '#1890ff' }} />
                 Warehouse Status
               </div>
             }
+            name="warehouse_status_id"
             rules={[{ 
               required: true, 
               message: 'Please select warehouse status!' 
@@ -240,9 +238,8 @@ function PageWarehouseEdit() {
               {warehouseStatus.map((item) => (
                 <Select.Option 
                   value={item?.ID} 
-                  //key={item?.ID}
                 >
-                  {item?.WarehouseStatus}
+                  {item?.warehouse_status}
                 </Select.Option>
               ))}
             </Select>
@@ -252,13 +249,13 @@ function PageWarehouseEdit() {
 
       {/* Capacity */}
       <Form.Item
-        name="capacity"
         label={
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <DatabaseOutlined style={{ color: '#1890ff' }} />
             Warehouse Capacity
           </div>
         }
+        name="capacity"
         rules={[{ 
           required: true, 
           message: 'Please input the warehouse capacity!' 
@@ -276,13 +273,13 @@ function PageWarehouseEdit() {
 
       {/* Address */}
       <Form.Item
-        name="address"
         label={
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <PushpinOutlined style={{ color: '#1890ff' }} />
             Address
           </div>
         }
+        name="address"
         rules={[{ 
           required: true, 
           message: 'Please input the warehouse address!' 
@@ -302,13 +299,13 @@ function PageWarehouseEdit() {
       <Row gutter={16}>
         <Col span={12}>
           <Form.Item
-            name="ProvinceID"
             label={
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <PushpinOutlined style={{ color: '#1890ff' }} />
                 Province
               </div>
             }
+            name="province_id"
             rules={[{ 
               required: true, 
               message: 'Please select the province!' 
@@ -324,9 +321,9 @@ function PageWarehouseEdit() {
               {province.map((item) => (
                 <Select.Option 
                   value={item?.ID} 
-                  //key={item?.ID}
+                  key={item?.ID}
                 >
-                  {item?.Province}
+                  {item?.province}
                 </Select.Option>
               ))}
             </Select>
@@ -334,13 +331,13 @@ function PageWarehouseEdit() {
         </Col>
         <Col span={12}>
           <Form.Item
-            name="zipcode"
             label={
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <PushpinOutlined style={{ color: '#1890ff' }} />
                 Zipcode
               </div>
             }
+            name="zipcode"
             rules={[
               { 
                 required: true, 

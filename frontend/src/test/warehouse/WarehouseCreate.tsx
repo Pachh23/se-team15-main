@@ -132,7 +132,7 @@ function PageWarehouseCreate() {
     >
       {/* Warehouse Name */}
       <Form.Item
-        name="WarehouseName"
+        name="warehouse_name"
         label={
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
             <InfoCircleOutlined style={{ color: '#1890ff' }} />
@@ -157,7 +157,7 @@ function PageWarehouseCreate() {
       <Row gutter={16}>
         <Col span={12}>
           <Form.Item
-            name="WarehouseTypeID"
+            name="warehouse_type_id"
             label={
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <TagsOutlined style={{ color: '#1890ff' }} />
@@ -180,7 +180,7 @@ function PageWarehouseCreate() {
                 <Select.Option 
                   value={item?.ID} 
                 >
-                  {item?.WarehouseType}
+                  {item?.warehouse_type}
                 </Select.Option>
               ))}
             </Select>
@@ -188,7 +188,7 @@ function PageWarehouseCreate() {
         </Col>
         <Col span={12}>
           <Form.Item
-            name="WarehouseStatusID"
+            name="warehouse_status_id"
             label={
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <TagsOutlined style={{ color: '#1890ff' }} />
@@ -211,7 +211,7 @@ function PageWarehouseCreate() {
                 <Select.Option 
                   value={item?.ID} 
                 >
-                  {item?.WarehouseStatus}
+                  {item?.warehouse_status}
                 </Select.Option>
               ))}
             </Select>
@@ -271,7 +271,7 @@ function PageWarehouseCreate() {
       <Row gutter={16}>
         <Col span={12}>
           <Form.Item
-            name="ProvinceID"
+            name="province_id"
             label={
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
                 <PushpinOutlined style={{ color: '#1890ff' }} />
@@ -295,7 +295,7 @@ function PageWarehouseCreate() {
                   value={item?.ID} 
                   //key={item?.ID}
                 >
-                  {item?.Province}
+                  {item?.province}
                 </Select.Option>
               ))}
             </Select>
