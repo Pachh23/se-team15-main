@@ -207,7 +207,8 @@ function PageWarehouse() {
   ];
 
   return (
-    <Layout style={{ minHeight: '100vh', background: '#f0f2f5' }}>
+    <div>
+    <Layout style={{ minHeight: '100vh', background: '#FFFFFF' }}>
       {contextHolder}
       <Header 
         style={{ 
@@ -287,22 +288,28 @@ function PageWarehouse() {
       </Header>
       <Content style={{ padding: '24px 50px' }}> 
         <Link to="/warehouse/create">
+        <div style={{
+          display: 'flex',
+          justifyContent: 'center',
+          alignItems: 'center',
+        }}>
           <Button
             type="primary"
             icon={<PlusOutlined />}
             size="large"
             style={{ 
-              marginBottom: '24px',
               background: '#10515F',
-              marginLeft: '90px',
-              borderRadius: '0px',
-              width: '250px',
-              height: '50px'
+              borderRadius: '4px',
+              width: '240px',
+              height: '50px',
+              marginTop: '-50px',
+              marginBottom: '20px',
             }}
-            //onClick={handleAddWarehouse}
+            // onClick={handleAddWarehouse}
           >
             New Warehouse
           </Button>
+        </div>
         </Link>
           <Card>
             <Table
@@ -310,10 +317,12 @@ function PageWarehouse() {
               dataSource={filteredWarehouses}
               pagination={{ pageSize: 10 }}
               rowKey="ID"
+              style={{background: '#FFFFFF'}}
             />
           </Card>
       </Content>
     </Layout>
+    </div>
   );
 }
 
