@@ -128,14 +128,14 @@ function PageWarehouseEdit() {
       <DatabaseOutlined 
         style={{ 
           fontSize: '48px', 
-          color: '#1890ff', 
+          color: '#FF7F50',
           marginBottom: '16px' 
         }} 
       />
       <Title 
         level={3} 
         style={{ 
-          color: '#1890ff', 
+          color: '#FF7F50',
           marginBottom: '8px' 
         }}
       >
@@ -162,7 +162,7 @@ function PageWarehouseEdit() {
       <Form.Item
         label={
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <InfoCircleOutlined style={{ color: '#1890ff' }} />
+            <InfoCircleOutlined style={{ color: '#FF7F50' }} />
             Warehouse Name
           </div>
         }
@@ -187,7 +187,7 @@ function PageWarehouseEdit() {
           <Form.Item
             label={
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <TagsOutlined style={{ color: '#1890ff' }} />
+                <TagsOutlined style={{ color: '#FF7F50' }} />
                 Warehouse Type
               </div>
             }
@@ -218,7 +218,7 @@ function PageWarehouseEdit() {
           <Form.Item
             label={
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <TagsOutlined style={{ color: '#1890ff' }} />
+                <TagsOutlined style={{ color: '#FF7F50' }} />
                 Warehouse Status
               </div>
             }
@@ -251,7 +251,7 @@ function PageWarehouseEdit() {
       <Form.Item
         label={
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <DatabaseOutlined style={{ color: '#1890ff' }} />
+            <DatabaseOutlined style={{ color: '#FF7F50' }} />
             Warehouse Capacity
           </div>
         }
@@ -275,7 +275,7 @@ function PageWarehouseEdit() {
       <Form.Item
         label={
           <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-            <PushpinOutlined style={{ color: '#1890ff' }} />
+            <PushpinOutlined style={{ color: '#FF7F50' }} />
             Address
           </div>
         }
@@ -301,7 +301,7 @@ function PageWarehouseEdit() {
           <Form.Item
             label={
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <PushpinOutlined style={{ color: '#1890ff' }} />
+                <PushpinOutlined style={{ color: '#FF7F50' }} />
                 Province
               </div>
             }
@@ -333,7 +333,7 @@ function PageWarehouseEdit() {
           <Form.Item
             label={
               <div style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
-                <PushpinOutlined style={{ color: '#1890ff' }} />
+                <PushpinOutlined style={{ color: '#FF7F50' }} />
                 Zipcode
               </div>
             }
@@ -362,7 +362,7 @@ function PageWarehouseEdit() {
         </Col>
         </Row>
 {/* Button Row */}
-        <Row gutter={16} style={{ marginTop: '24px' }}>
+        <Row gutter={16} style={{ marginTop: '17px' }}>
           <Col span={12}>
           <Link to="/warehouse">
             <Button 
@@ -373,7 +373,7 @@ function PageWarehouseEdit() {
                 height: '40px'
               }}
             >
-              Cancel
+              Close
             </Button>
             </Link>
           </Col>
@@ -386,8 +386,8 @@ function PageWarehouseEdit() {
               style={{ 
                 borderRadius: '8px',
                 height: '40px',
-                backgroundColor: '#1890ff',
-                borderColor: '#1890ff'
+                backgroundColor: '#FF7F50', 
+                borderColor: '#FF7F50'
               }}
             >
               Save

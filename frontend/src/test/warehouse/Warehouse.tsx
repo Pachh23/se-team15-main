@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Layout, Typography, Input, Button, Card, Space, Row, Col, Tag,Table, message} from 'antd';
 import { SearchOutlined, DatabaseOutlined, DeleteTwoTone, EditTwoTone, PlusOutlined} from '@ant-design/icons';
 import w1 from "../../assets/w1.png";
@@ -15,7 +15,7 @@ function PageWarehouse() {
   const [messageApi, contextHolder] = message.useMessage();
   const [warehouses, setWarehouses] = useState<WarehousesInterface[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
-  const myId = localStorage.getItem("id");
+  //const myId = localStorage.getItem("id");
 
   const deleteWarehouseById = async (id: string) => {
     let res = await DeleteWarehousesById(id);
@@ -194,10 +194,7 @@ function PageWarehouse() {
       key: 'action',
       width: 140,
       render: (record) => (
-        <>
-          {myId == record?.ID ? (
-            <></>
-          ) : (
+        
         <Space size="middle">
           <Button onClick={() => navigate(`/warehouse/edit/${record.ID}`)}>
             <EditTwoTone twoToneColor="#10515F" /></Button>
@@ -205,9 +202,7 @@ function PageWarehouse() {
             <DeleteTwoTone twoToneColor="#FF7236" />
           </Button>
         </Space>
-          )}
-        </>
-      ),
+          )
     },
   ];
 
@@ -220,7 +215,7 @@ function PageWarehouse() {
           backgroundSize: 'cover', // ให้ภาพครอบคลุมพื้นที่ทั้งหมด
           margin: 0, // ลบระยะห่างรอบขอบ
           padding: 0, // ลบระยะห่างภายใน
-          width: '100vw', // ความกว้างเต็มหน้าจอ
+          width: '99vw', // ความกว้างเต็มหน้าจอ
           height: '40vh', // ความสูงเต็มหน้าจอ
           display: 'flex',
           alignItems: 'center',
