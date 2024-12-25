@@ -7,7 +7,7 @@ import (
 
 	"github.com/aprbq/se-team15/config"
 	"github.com/aprbq/se-team15/controller"
-	controllerwarehouse "github.com/aprbq/se-team15/controller/controllerWarehouse"
+	 "github.com/aprbq/se-team15/controller/controllerWarehouse"
 	"github.com/aprbq/se-team15/middleware"
 )
 
