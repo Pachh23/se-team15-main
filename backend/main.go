@@ -43,6 +43,8 @@ func main() {
 		router.GET("/warehouse/:id", controllerwarehouse.GetWarehouse)
 		router.DELETE("/warehouse/:id", controllerwarehouse.DeleteWarehouse)
 
+		
+
 	}
 
 	r.GET("/genders", controller.GetListGenders)

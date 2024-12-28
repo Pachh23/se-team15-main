@@ -81,3 +81,23 @@ export interface WarehouseTypesInterface {
   ID?: number;
   warehouse_type?: string;
 }
+
+export interface CategoryInterface {
+  ID?: number;
+  NameCategory?: string;
+}
+
+export interface InventoryCountsInterface {
+  ID?: number;
+  ProductID?: number;
+	WarehouseID?: number;
+	CountedQuantity?: number;
+	remark?: string;
+}
+
+export interface ProductInterface {
+  ID?: number;
+  ProductName?: string;
+	ProductPrice?: number;
+	CategoryID?: number;
+}

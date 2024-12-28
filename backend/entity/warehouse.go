@@ -20,6 +20,6 @@ type Warehouses struct {
 	WarehouseStatusID uint              `valid:"required~WarehouseStatus is required" json:"warehouse_status_id"`
 	WarehouseStatus   WarehouseStatuses `gorm:"foreignKey: WarehouseStatusID" json:"warehouse_status"`
 
-	//Employees []Employee `gorm:"foreignKey:WarehouseID"`
-	//Location  []Location `gorm:"foreignKey:WarehouseID"`
+	Employees []Employee `gorm:"foreignKey:WarehouseID"`
+	Location  []Location `gorm:"foreignKey:WarehouseID"`
 }

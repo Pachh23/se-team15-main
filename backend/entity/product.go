@@ -13,10 +13,9 @@ type Product struct {
 	CategoryID uint
 	Category   Category `gorm:"foreignKey:CategoryID"`
 
-	
 	OrderItem       []OrderItem       `gorm:"foreignKey:ProductID"`
 	ProductLocation []ProductLocation `gorm:"foreignKey:ProductID"`
-	
+
 	Trasaction []Trasaction `gorm:"foreignKey:ProductID"`
 	EmployeeID *uint
 	Employee   Employee `gorm:"foriegnKey:EmployeeID"`

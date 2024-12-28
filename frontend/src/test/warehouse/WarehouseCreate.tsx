@@ -12,10 +12,6 @@ import {
   Typography,
 } from "antd";
 import {
-  DatabaseOutlined,
-  PushpinOutlined,
-  TagsOutlined,
-  InfoCircleOutlined,
   CloseOutlined,
   SaveOutlined,
 } from "@ant-design/icons";
@@ -32,6 +28,7 @@ import {
   GetProvince,
   CreateWarehouse,
 } from "../../services/https";
+import { Activity, Building2, Database, MapPin, TagIcon, Warehouse, Map, Mail, } from "lucide-react";
 
 const { Title } = Typography;
 
@@ -96,37 +93,20 @@ function PageWarehouseCreate() {
         style={{
           maxWidth: "600px",
           margin: "0 auto",
+          marginTop: "10px",
           borderRadius: "12px",
           boxShadow: "0 8px 16px rgba(0,0,0,0.1)",
           background: "linear-gradient(to right, #f5f7fa 0%, #f5f7fa 100%)",
         }}
       >
-        <div style={{ textAlign: "center", marginBottom: "24px" }}>
-          <DatabaseOutlined
-            style={{
-              fontSize: "48px",
-              color: "#1890ff",
-              marginBottom: "16px",
-            }}
-          />
-          <Title
-            level={3}
-            style={{
-              color: "#1890ff",
-              marginBottom: "8px",
-            }}
-          >
-            Create New Warehouse
-          </Title>
-          <Typography.Text
-            type="secondary"
-            style={{
-              fontSize: "14px",
-            }}
-          >
-            Fill in the details for your new warehouse location
-          </Typography.Text>
-        </div>
+        {/* Header */}
+        <div className="text-center mb-8">
+            <div className="inline-flex justify-center items-center w-16 h-16 bg-blue-100 rounded-full mb-3">
+              <Warehouse className="w-8 h-8 text-blue-600" />
+            </div>
+            <h2 className="text-2xl font-bold text-gray-900">Create Warehouse</h2>
+            <p className="text-gray-500 mt-1">Enter warehouse details below</p>
+          </div>
 
         <Form
           name="basic"
@@ -140,7 +120,7 @@ function PageWarehouseCreate() {
             name="warehouse_name"
             label={
               <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                <InfoCircleOutlined style={{ color: "#1890ff" }} />
+                <Building2 className="w-4 h-4 text-blue-500" />
                 Warehouse Name
               </div>
             }
@@ -162,7 +142,7 @@ function PageWarehouseCreate() {
                 name="warehouse_type_id"
                 label={
                   <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                    <TagsOutlined style={{ color: "#1890ff" }} />
+                    <TagIcon className="w-4 h-4 text-blue-500" />
                     Warehouse Type
                   </div>
                 }
@@ -188,7 +168,7 @@ function PageWarehouseCreate() {
                 name="warehouse_status_id"
                 label={
                   <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                    <TagsOutlined style={{ color: "#1890ff" }} />
+                    <Activity className="w-4 h-4 text-blue-500" />
                     Warehouse Status
                   </div>
                 }
@@ -216,7 +196,7 @@ function PageWarehouseCreate() {
             name="capacity"
             label={
               <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                <DatabaseOutlined style={{ color: "#1890ff" }} />
+                <Database className="w-4 h-4 text-blue-500" />
                 Warehouse Capacity
               </div>
             }
@@ -237,7 +217,7 @@ function PageWarehouseCreate() {
             name="address"
             label={
               <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                <PushpinOutlined style={{ color: "#1890ff" }} />
+                <MapPin className="w-4 h-4 text-blue-500" />
                 Address
               </div>
             }
@@ -260,7 +240,7 @@ function PageWarehouseCreate() {
                 name="province_id"
                 label={
                   <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                    <PushpinOutlined style={{ color: "#1890ff" }} />
+                     <Map className="w-4 h-4 text-blue-500" />
                     Province
                   </div>
                 }
@@ -286,7 +266,7 @@ function PageWarehouseCreate() {
                 name="zipcode"
                 label={
                   <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
-                    <PushpinOutlined style={{ color: "#1890ff" }} />
+                    <Mail className="w-4 h-4 text-blue-500" />
                     Zipcode
                   </div>
                 }

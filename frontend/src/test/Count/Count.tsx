@@ -3,6 +3,7 @@ import { SearchOutlined, DatabaseOutlined, DeleteTwoTone, PlusOutlined} from '@a
 import w1 from "../../assets/w1.png";
 import { WarehousesInterface } from '../../interfaces/InterfaceFull';
 import type { ColumnsType } from 'antd/es/table';
+import { Link } from 'react-router-dom';
 const { Header, Content } = Layout;
 const { Title, Text } = Typography;
 
@@ -10,8 +11,6 @@ const { Title, Text } = Typography;
 function PageCount() {
   const [, contextHolder] = message.useMessage();
   //const myId = localStorage.getItem("id");
-
-  
 
   const columns: ColumnsType<WarehousesInterface> = [
     {
@@ -39,18 +38,11 @@ function PageCount() {
     },  
     {
       title: "Category",
-      dataIndex: "category_id",
-      key: "category_id",
+      key: "CategoryID",
     },
     {
-      title: "Price",
-      dataIndex: "price",
-      key: "price",
-    },
-    {
-      title: "Quantity",
-      dataIndex: "counted_quantity",
-      key: "counted_quantity",
+      title: "Warehouse",
+      key: "WarehouseID",
     },
     {
       title: "Remark",
@@ -155,7 +147,30 @@ function PageCount() {
         
       </Header>
       <Content style={{ padding: '24px 50px' }}> 
-      
+      <Link to="/count/create">
+              <div style={{
+                display: 'flex',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}>
+                <Button
+                  type="primary"
+                  icon={<PlusOutlined />}
+                  size="large"
+                  style={{ 
+                    background: '#10515F',
+                    borderRadius: '4px',
+                    width: '240px',
+                    height: '50px',
+                    marginTop: '-50px',
+                    marginBottom: '20px',
+                  }}
+                  // onClick={handleAddWarehouse}
+                >
+                  New Count
+                </Button>
+              </div>
+              </Link>
           <Card>
             <Table
               columns={columns}

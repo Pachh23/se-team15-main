@@ -50,6 +50,8 @@ func SetupDatabase() {
 		&entity.OrderItem{},
 		&entity.Product{},
 		&entity.Bill{},
+		&entity.Trasaction{},
+		&entity.InventoryCounts{},
 	)
 
 	GenderMale := entity.Genders{Gender: "Male"}
@@ -248,4 +250,28 @@ func SetupDatabase() {
 			ProductName: product.ProductName,
 		})
 	}
+
+	trasactions := []entity.Trasaction{
+		{
+			ProductID:        1,
+			Quantity:         100,
+			Transaction_date: time.Now(),
+		},
+		{
+			ProductID:        2,
+			Quantity:         200,
+			Transaction_date: time.Now(),
+		},
+		{
+			ProductID:        3,
+			Quantity:         300,
+			Transaction_date: time.Now(),
+		},
+	}
+	for _, trasaction := range trasactions {
+		db.FirstOrCreate(&trasaction, &entity.Trasaction{
+			ProductID: trasaction.ProductID,
+		})
+	}
+
 }

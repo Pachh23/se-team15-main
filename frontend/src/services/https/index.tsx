@@ -1,4 +1,4 @@
-import { EmployeeInterface, CustomerInterface, GendersInterface, PositionsInterface, WarehousesInterface, } from "../../interfaces/InterfaceFull";
+import { EmployeeInterface, CustomerInterface, GendersInterface, PositionsInterface, WarehousesInterface, InventoryCountsInterface} from "../../interfaces/InterfaceFull";
 import { SignInInterface } from "../../interfaces/SignIn";
 import axios from "axios";
 
@@ -176,6 +176,21 @@ async function CreateWarehouse(data: WarehousesInterface) {
 }
 
 
+async function GetProduct() {
+  return await axios
+    .get(`${apiUrl}/products`,requestOptions)
+    .then((res) => res)
+    .catch((e) => e.response);
+}
+
+
+async function CreateInventoryCounts(data: InventoryCountsInterface) {
+  return await axios
+    .post(`${apiUrl}/count-create`, data, requestOptions)
+    .then((res) => res)
+    .catch((e) => e.response);
+}
+
 export {
 
   SignIn,
@@ -197,4 +212,6 @@ export {
   DeleteWarehousesById,
   CreateWarehouse,
   
+  GetProduct,
+  CreateInventoryCounts,
 };

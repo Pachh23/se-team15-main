@@ -15,6 +15,7 @@ import Warehouse from "./test/warehouse/Warehouse"
 import PageWarehouseCreate from "./test/warehouse/WarehouseCreate";
 import PageWarehouseEdit from "./test/warehouse/WarehouseEdit";
 import PageCount from "./test/Count/Count";
+import PageCountCreate from "./test/Count/CountCreate";
 const App: React.FC = () => {
   return (
     <Router>
@@ -32,7 +33,7 @@ const App: React.FC = () => {
           <Route path="/warehouse/create" element={<PageWarehouseCreate />} />
           <Route path="/warehouse/edit/:id" element={<PageWarehouseEdit />} />
           <Route path="/count" element={<PageCount />} />
-
+          <Route path="/count/create" element={<PageCountCreate />} />
 
         </Route>
         <Route path="/page-c" element={<PageC />} />
