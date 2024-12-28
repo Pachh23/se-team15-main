@@ -36,6 +36,7 @@ func SetupDatabase() {
 		&entity.OrderStatus{},
 		&entity.WarehouseStatuses{},
 		&entity.Warehouses{},
+		&entity.Category{},
 		&entity.Customer{},
 		&entity.Employee{},
 		&entity.Genders{},
@@ -180,17 +181,46 @@ func SetupDatabase() {
 		db.FirstOrCreate(&entity.Provinces{Province: provinceName}, &entity.Provinces{Province: provinceName})
 	}
 
-	Warehouse := &entity.Warehouses{
-		WarehouseName:     "Warehouse A",
-		WarehouseTypeID:   3,
-		Capacity:          500, // หน่วย: m³ (ลูกบาศก์เมตร)
-		WarehouseStatusID: 1,
-		Address:           "123/4 Sukhumvit 22, Khlong Tan Nuea, Watthana",
-		Zipcode:           "10110",
-		ProvinceID:        3,
+	warehouses := []*entity.Warehouses{
+		{
+			WarehouseName:     "Warehouse A",
+			WarehouseTypeID:   1,
+			Capacity:          500.00, // หน่วย: m³ (ลูกบาศก์เมตร)
+			WarehouseStatusID: 1,
+			Address:           "123/4 Sukhumvit 22, Khlong Tan Nuea, Watthana",
+			Zipcode:           "10110",
+			ProvinceID:        3,
+		},
+		{
+			WarehouseName:     "Warehouse B",
+			WarehouseTypeID:   3,
+			Capacity:          1000.00,
+			WarehouseStatusID: 4,
+			Address:           "456/7 Sukhumvit 55, Khlong Tan Nuea, Watthana",
+			Zipcode:           "10200",
+			ProvinceID:        3,
+		},
+		{
+			WarehouseName:     "Warehouse C",
+			WarehouseTypeID:   4,
+			Capacity:          2000.00,
+			WarehouseStatusID: 3,
+			Address:           "789/8 Sukhumvit 33, Khlong Tan Nuea, Watthana",
+			Zipcode:           "10300",
+			ProvinceID:        3,
+		},
 	}
-	db.FirstOrCreate(Warehouse, &entity.Warehouses{
-		WarehouseName: "Warehouse A",
-	})
+	for _, warehouse := range warehouses {
+		db.FirstOrCreate(warehouse, &entity.Warehouses{
+			WarehouseName: warehouse.WarehouseName,
+		})
+	}
 
+	// ----------------Category-------------//
+	categories := []string{"Electronics", "Fashion", "Baby Products", "Food and Beverages"}
+	for _, categoryName := range categories {
+		db.FirstOrCreate(&entity.Category{NameCategory: categoryName}, entity.Category{NameCategory: categoryName})
+	}
+
+	
 }
