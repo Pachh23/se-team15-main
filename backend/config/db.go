@@ -44,11 +44,11 @@ func SetupDatabase() {
 		&entity.LocationStatus{},
 		&entity.Location{},
 		&entity.ProductLocation{},
-		&entity.Product{},
 		&entity.Zone{},
 		&entity.Shipment{},
 		&entity.Order{},
 		&entity.OrderItem{},
+		&entity.Product{},
 		&entity.Bill{},
 	)
 
@@ -181,7 +181,7 @@ func SetupDatabase() {
 		db.FirstOrCreate(&entity.Provinces{Province: provinceName}, &entity.Provinces{Province: provinceName})
 	}
 
-	warehouses := []*entity.Warehouses{
+	warehouses := []entity.Warehouses{
 		{
 			WarehouseName:     "Warehouse A",
 			WarehouseTypeID:   1,
@@ -211,7 +211,7 @@ func SetupDatabase() {
 		},
 	}
 	for _, warehouse := range warehouses {
-		db.FirstOrCreate(warehouse, &entity.Warehouses{
+		db.FirstOrCreate(&warehouse, &entity.Warehouses{
 			WarehouseName: warehouse.WarehouseName,
 		})
 	}
@@ -222,5 +222,30 @@ func SetupDatabase() {
 		db.FirstOrCreate(&entity.Category{NameCategory: categoryName}, entity.Category{NameCategory: categoryName})
 	}
 
-	
+	products := []entity.Product{
+		{
+			ProductName:  "Television",
+			ProductPrice: 12000,
+			CategoryID:   1,
+			//EmployeeID:   1,
+		},
+		{
+			ProductName:  "Clothing",
+			ProductPrice: 599,
+			CategoryID:   2,
+			//EmployeeID:   2,
+		},
+		{
+			ProductName:  "Bags",
+			ProductPrice: 900,
+			CategoryID:   2,
+			//EmployeeID:   3,
+		},
+	}
+	for _, product := range products {
+		newProduct := product
+		db.FirstOrCreate(&newProduct, entity.Product{
+			ProductName: product.ProductName,
+		})
+	}
 }

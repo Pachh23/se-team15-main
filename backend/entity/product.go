@@ -11,13 +11,13 @@ type Product struct {
 	ProductPrice float32 `gorm:"not null"`
 
 	CategoryID uint
-	Category Category `gorm:"foreignKey:CategoryID"`
-	EmployeeID *uint
+	Category   Category `gorm:"foreignKey:CategoryID"`
 
-	Employee Employee `gorm:"foriegnKey:EmployeeID"`
-
+	
 	OrderItem       []OrderItem       `gorm:"foreignKey:ProductID"`
 	ProductLocation []ProductLocation `gorm:"foreignKey:ProductID"`
-
+	
 	Trasaction []Trasaction `gorm:"foreignKey:ProductID"`
+	EmployeeID *uint
+	Employee   Employee `gorm:"foriegnKey:EmployeeID"`
 }
