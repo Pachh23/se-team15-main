@@ -9,7 +9,6 @@ import {
   message,
   InputNumber,
   Select,
-  Typography,
 } from "antd";
 import {
   CloseOutlined,
@@ -30,7 +29,6 @@ import {
 } from "../../services/https";
 import { Activity, Building2, Database, MapPin, TagIcon, Warehouse, Map, Mail, } from "lucide-react";
 
-const { Title } = Typography;
 
 function PageWarehouseCreate() {
   const navigate = useNavigate();

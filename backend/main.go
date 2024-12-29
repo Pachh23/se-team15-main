@@ -7,7 +7,7 @@ import (
 
 	"github.com/aprbq/se-team15/config"
 	"github.com/aprbq/se-team15/controller"
-	 "github.com/aprbq/se-team15/controller/controllerWarehouse"
+	controllerwarehouse "github.com/aprbq/se-team15/controller/controllerWarehouse"
 	"github.com/aprbq/se-team15/middleware"
 )
 
@@ -43,7 +43,7 @@ func main() {
 		router.GET("/warehouse/:id", controllerwarehouse.GetWarehouse)
 		router.DELETE("/warehouse/:id", controllerwarehouse.DeleteWarehouse)
 
-		
+		//router.GET("/product", product.GetProduct)
 
 	}
 
@@ -51,6 +51,8 @@ func main() {
 	r.GET("/warehouseTypes", controllerwarehouse.GetAllWarehouseTypes)
 	r.GET("/warehouseStatuses", controllerwarehouse.GetAllWarehouseStatuses)
 	r.GET("/provinces", controllerwarehouse.GetAllProvinces)
+	//r.GET("/category", category.GetAllCategories)
+
 	r.GET("/", func(c *gin.Context) {
 
 		c.String(http.StatusOK, "API RUNNING... PORT: %s", PORT)

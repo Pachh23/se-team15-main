@@ -174,11 +174,17 @@ async function CreateWarehouse(data: WarehousesInterface) {
     .then((res) => res)
     .catch((e) => e.response);
 }
-
-
+/*
+async function GetCategory() {
+  return await axios
+    .get(`${apiUrl}/category`,requestOptions)
+    .then((res) => res)
+    .catch((e) => e.response);
+}
+*/
 async function GetProduct() {
   return await axios
-    .get(`${apiUrl}/products`,requestOptions)
+    .get(`${apiUrl}/product`,requestOptions)
     .then((res) => res)
     .catch((e) => e.response);
 }
@@ -212,6 +218,7 @@ export {
   DeleteWarehousesById,
   CreateWarehouse,
   
+  //GetCategory,
   GetProduct,
   CreateInventoryCounts,
 };

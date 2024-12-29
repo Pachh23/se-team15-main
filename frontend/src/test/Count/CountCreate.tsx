@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { PackageSearch, Warehouse, ClipboardList, MessageSquare, X, Save } from "lucide-react";
+import { PackageSearch, Warehouse, ClipboardList, MessageSquare,  } from "lucide-react";
 import {
   Button,
   Col,
@@ -13,7 +13,6 @@ import {
   Typography,
 } from "antd";
 import {
-  DatabaseOutlined,
   CloseOutlined,
   SaveOutlined,
 } from "@ant-design/icons";
@@ -25,7 +24,6 @@ import {
 } from "../../services/https";
 import { InventoryCountsInterface,ProductInterface,WarehousesInterface} from "../../interfaces/InterfaceFull";
 
-const { Title } = Typography;
 const { TextArea } = Input;
 
 function InventoryCountCreate() {
